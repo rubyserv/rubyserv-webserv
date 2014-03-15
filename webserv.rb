@@ -70,8 +70,12 @@ module WebServ
     }
   end
 
-  def build_users_array
-    RubyServ::IRC::User.all.map { |user| build_user(user) }
+  def build_users_array(users = nil)
+    if users
+      users.map { |user| build_user(user) }
+    else
+      RubyServ::IRC::User.all.map { |user| build_user(user) }
+    end
   end
 
   def build_channel(channel)
